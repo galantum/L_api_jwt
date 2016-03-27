@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+//import Input Class
+use Illuminate\Support\Facades\Input;
 
 class UserController extends Controller
 {
