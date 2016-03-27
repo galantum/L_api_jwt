@@ -9,4 +9,33 @@ use App\Http\Requests;
 class UserController extends Controller
 {
     //
+
+    #Create method for register
+    public function register(){
+    	#get all data from input
+    	$data = Input::all();
+        
+        #create validation
+        $validation = Validator::make($data, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+        #create conditional statment if validation passes
+        if ($validation->passes()) {
+            #create data user in table
+            User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+            ]);
+            #create json respon success
+            return response(json_encode('Registrasi telah berhasil', 200));
+        } else {
+        	#create json respon failed
+            return response(json_encode(['error' => 'Registrasi gagal'], 406));
+        }       
+
+    }
 }
