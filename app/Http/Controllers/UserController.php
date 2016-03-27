@@ -9,6 +9,8 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
 //import Auth Class
 use Auth;
+//import JWT Class
+use \Firebase\JWT\JWT;
 
 class UserController extends Controller
 {
