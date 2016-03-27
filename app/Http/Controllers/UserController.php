@@ -57,7 +57,11 @@ class UserController extends Controller
             #create payload for token JWT
             $payload = array(
                 #create expired time for token (Token Expired after 30 minutes)
-                "exp" => time() + 1800
+                "exp" => time() + 1800,
+                #create email from value email input
+                "email" => $data['email'],
+                #create password from value pasword input
+                "password" => $data['password']
             );
 
             #generate token jwt
