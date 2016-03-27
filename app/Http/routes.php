@@ -21,3 +21,6 @@ Route::group(['middleware' => ['web']], function () {
 
 #create route for registration
 Route::post('/register', 'UserController@register');
+
+#Create route for Login
+Route::post('/login', 'UserController@login');
