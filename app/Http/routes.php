@@ -24,3 +24,12 @@ Route::post('/register', 'UserController@register');
 
 #Create route for Login
 Route::post('/login', 'UserController@login');
+
+#create route group for user access his data
+Route::group(array('prefix' => 'api', 'middleware' => 'jwt'), function(){
+	#Create route for get data profile User
+	Route::get('/user', 'UserController@show');
+	#Create Route for edit data profile User
+	Route::put('/user/edit', 'UserController@edit');
+
+});
