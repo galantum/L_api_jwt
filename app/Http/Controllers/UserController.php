@@ -38,4 +38,30 @@ class UserController extends Controller
         }       
 
     }
+
+    public function login(){
+    	#get al data from form input
+    	$data = Input::all();
+
+    	#create conditional statment if $data match one user table data
+        if(Auth::attempt($data)){
+            #create signature for token JWT
+            $key = 'grandis';
+
+            #create payload for token JWT
+            $payload = array(
+                #create expired time for token (Token Expired after 30 minutes)
+                "exp" => time() + 1800
+            );
+
+            #generate token jwt
+            $jwt = JWT::encode($payload, $key);
+
+            #create json response with token JWT and success
+            return response(json_encode(['jwt' => $jwt], 200));
+        } else {
+        	#create json responce failed
+            return response(json_encode(['error' => 'Username and password wrong'], 500));
+        }		
+    }
 }
