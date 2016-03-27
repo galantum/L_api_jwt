@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 //import Input Class
 use Illuminate\Support\Facades\Input;
+//import Auth Class
+use Auth;
 
 class UserController extends Controller
 {
