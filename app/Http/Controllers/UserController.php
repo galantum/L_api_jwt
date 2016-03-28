@@ -82,4 +82,34 @@ class UserController extends Controller
         #show all data from User when id match with $id
         return User::find($id);
     }
+
+    public function edit(){
+        #get id logged user
+        $id = Auth::id();
+
+        #get all value from form input
+        $input = Input::only('name', 'password');
+
+        #create validation
+        $validation = Validator::make($input, [
+            'name' => 'required|max:255',
+            'password' => 'required|min:6',
+        ]);
+
+        #create condition statment if validation passes
+        if ($validation->passes())
+        {
+            #get all data from User when id match with $id
+            $user = User::find($id);
+            #update data user with new value from value input
+            $user->update([
+                'name' => $input['name'],
+                'password' => bcrypt($input['password']),
+            ]);
+            #create json response Update success
+            return response(json_encode('Update success', 200));
+        }
+        #create json response Update failed
+        return response(json_encode('Update failed', 500));
+    }
 }
