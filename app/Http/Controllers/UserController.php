@@ -74,4 +74,12 @@ class UserController extends Controller
             return response(json_encode(['error' => 'Username and password wrong'], 500));
         }		
     }
+
+    public function show(){
+        #Find id logged user
+        $id = Auth::id();
+
+        #show all data from User when id match with $id
+        return User::find($id);
+    }
 }
