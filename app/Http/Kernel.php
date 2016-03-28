@@ -34,6 +34,11 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
         ],
+
+        #register middleware
+        'jwt' => [
+            \App\Http\Middleware\jwtMiddleware::class,
+        ],
     ];
 
     /**
