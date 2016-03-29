@@ -54,14 +54,26 @@ class UserController extends Controller
             #create signature for token JWT
             $key = 'grandis';
 
+            #get id from logged user
+            $id = Auth::id();
+
             #create payload for token JWT
             $payload = array(
                 #create expired time for token (Token Expired after 30 minutes)
                 "exp" => time() + 1800,
-                #create email from value email input
+                /*#create email from value email input
                 "email" => $data['email'],
                 #create password from value pasword input
-                "password" => $data['password']
+                "password" => $data['password']*/
+
+                #create iss
+                "iss" => "http://localhost:8000/",
+
+                #create subject
+                "sub" => "Access API",
+
+                #create id from value $id
+                "id" => $id;
             );
 
             #generate token jwt
