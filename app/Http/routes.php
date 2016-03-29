@@ -33,7 +33,8 @@ Route::group(['middleware' => ['web']], function () {
 		Route::get('/user', 'UserController@show');
 		#Create Route for edit data profile User
 		Route::put('/user/edit', 'UserController@edit');
-		#Create Route for resetToken
-		Route::get('/user/resetToken', 'UserController@resetToken');
 	});
+
+	#Create Route for resetToken
+		Route::get('/user/resetToken', 'UserController@resetToken');
 });
