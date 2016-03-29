@@ -28,7 +28,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/login', 'UserController@login');
 
 	#create route group for user access his data
-	Route::group(array('prefix' => 'api', 'middleware' => 'jwt'), function(){
+	Route::group(array('prefix' => 'api', 'middleware' => ['jwt', 'throttle:5,10']), function(){
 		#Create route for get data profile User
 		Route::get('/user', 'UserController@show');
 		#Create Route for edit data profile User
