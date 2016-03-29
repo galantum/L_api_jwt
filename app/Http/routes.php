@@ -37,4 +37,6 @@ Route::group(['middleware' => ['web']], function () {
 
 	#Create Route for resetToken
 	Route::get('/resetToken', 'UserController@resetToken');
+	#create Route for user loggout
+	Route::get('/logout', 'UserController@logout');
 });
