@@ -154,4 +154,16 @@ class UserController extends Controller
             return response(json_encode(['error' => 'Unauthorized.'], 401));
         }
     }
+
+    public function logout(){
+        #user logout
+        Auth::logout();
+
+        #create conditional statment if user is logout
+        if (Auth::check() == FALSE) {
+            return response(json_encode(['User have been log out'], 200));
+        } else {
+            return response(json_encode(['error' => 'Unauthorized.'], 401));
+        }
+    }
 }
