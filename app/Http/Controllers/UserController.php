@@ -124,4 +124,34 @@ class UserController extends Controller
         #create json response Update failed
         return response(json_encode('Update failed', 500));
     }
+
+    public function resetToken(){
+        #get id from logged user
+        $id = Auth::id();
+
+        if (isset($id)) {
+            #create signature for token JWT
+            $key = 'grandis';
+
+            #create payload for token JWT
+            $payload = array(
+                #create expired time for token (Token Expired after 30 minutes)
+                "exp" => time() + 1800,
+                #create iss
+                "iss" => "http://localhost:8000/",
+                #create subject
+                "sub" => "Access API",
+                #create id from value $id
+                "id" => $id;
+            );
+
+            #generate token jwt
+            $jwt = JWT::encode($payload, $key);
+
+            #create json response with token JWT and success
+            return response(json_encode(['jwt' => $jwt], 200));
+        } else {
+            return response(json_encode(['error' => 'Unauthorized.'], 401));
+        }
+    }
 }
