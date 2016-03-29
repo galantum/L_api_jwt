@@ -31,16 +31,13 @@ class jwtMiddleware
                 #Change decode Token JWT to array
                 $decoded_array = (array)$decoded;
 
-                #get value email and password from decoded_array
-                $email = $decoded_array['email'];
-                $password = $decoded_array['password'];
+                #get value id from decoded_array
+                $id = $decoded_array['id'];
+                #get id logged user
+                $idUserLogin = Auth::id();
 
-                #input value email and password in variable $data
-                $data = ['email' => $email, 'password' => $password];
-
-                #create conditional statment if Auth match with value $data
-                if (Auth::attempt($data)) {
-                    #Authentication success
+                #create conditional statment if data value id match with value idUserLogin
+                if ($id == $idUserLogin) {
                     return $next($request);
                 } else {
                     #Authentication failed
