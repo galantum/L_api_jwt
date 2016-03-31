@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Input;
 use Auth;
 //import JWT Class
 use \Firebase\JWT\JWT;
+//Import User Class
+use App\User;
 
 class UserController extends Controller
 {
@@ -73,7 +75,7 @@ class UserController extends Controller
                 "sub" => "Access API",
 
                 #create id from value $id
-                "id" => $id;
+                "id" => $id
             );
 
             #generate token jwt
@@ -142,7 +144,7 @@ class UserController extends Controller
                 #create subject
                 "sub" => "Access API",
                 #create id from value $id
-                "id" => $id;
+                "id" => $id
             );
 
             #generate token jwt
