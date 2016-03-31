@@ -4,6 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 
+//import JWT Class
+use \Firebase\JWT\JWT;
+use Auth;
+
 class jwtMiddleware
 {
     /**
@@ -47,5 +51,6 @@ class jwtMiddleware
             }catch(\Exception $e){
                 return response(['error' => $e->getMessage()], 500);
             }
+        }
     }
 }
